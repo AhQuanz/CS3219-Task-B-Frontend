@@ -9,16 +9,18 @@ function App() {
   const [isFetching, setIsFetching] = useState(false);
   const [feedBack, setFeedBack] = useState("");
   const formRef = createRef();
-  console.log("TEST", process.env.REACT_APP_API_ROUTE);
   const handleOnSubmit = async (values) => {
     setIsFetching(true);
     await axios
-      .post(`${process.env.REACT_APP_API_ROUTE}\TaskB\retrieveMatch`, values)
+      .get(`${process.env.REACT_APP_API_ROUTE}\TaskB\\retrieveMatch`, {
+        params: values,
+      })
       .then((res) => {
-        console.log(res);
+        setFeedBack(res.message);
       })
       .catch((err) => {
-        console.log(err);
+        console.log("TEST", err);
+        setFeedBack(err.response.data.message);
       })
       .finally(() => setIsFetching(false));
   };
