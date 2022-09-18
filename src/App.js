@@ -16,7 +16,7 @@ function App() {
         params: values,
       })
       .then((res) => {
-        setFeedBack(res.message);
+        setFeedBack("Record is valid");
       })
       .catch((err) => {
         console.log("TEST", err);
